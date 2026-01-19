@@ -10,7 +10,7 @@
  * @param hysteresis The difference between upper and lower switching points
  */
 TwoPointController::TwoPointController(float setpoint, float hysteresis)
-    : _setpoint(setpoint), _hysteresis(hysteresis), _state(false) {
+    : _setpoint(setpoint), _hysteresis(hysteresis >= 0.0f ? hysteresis : 0.0f), _state(false) {
 }
 
 /**
@@ -61,7 +61,7 @@ float TwoPointController::getSetpoint() const {
  * @param hysteresis The new hysteresis value
  */
 void TwoPointController::setHysteresis(float hysteresis) {
-    _hysteresis = hysteresis;
+    _hysteresis = hysteresis >= 0.0f ? hysteresis : 0.0f;
 }
 
 /**
